@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cls-1 {
+  fill: #ff8204;
+}
+.cls-2 {
+  fill: #003a70;
+}
+
+// Form details
+
+.input-field {
+  @apply w-full rounded-md relative shadow-sm bg-white;
+}
+
+.field {
+  @apply space-y-2;
+}
+
+.field-checkbox {
+  @apply flex items-center space-x-2;
+}
+
+.field label {
+  @apply block font-medium;
+}
+
+.input-field input {
+  @apply block w-full h-12 pl-3 pr-10 border rounded-md shadow appearance-none sm:text-sm border-white;
+}
