@@ -1,16 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      'components/**/*.vue',
-      'layouts/**/*.vue',
-      'pages/**/*.vue',
-      'plugins/**/*.vue',
-      'nuxt.config.js',
-    ],
-  },
+  mode: 'jit',
+  purge: [
+    './app/views/**/*.html.erb',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
