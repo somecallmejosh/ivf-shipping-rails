@@ -15,7 +15,7 @@
     <div class="relative flex flex-col min-h-screen overflow-hidden text-ivf-blue">
       <div class="relative z-10 flex items-center h-24 px-4 bg-white shadow-md">
         <header class="flex items-center justify-between w-full h-full mx-auto max-w-screen-2xl">
-          <a href="/" aria-label="Home page" class="w-40">
+          <a href="/" aria-label="Home page" class="w-28 lg:w-32">
             <%= render '/shared/svgs/logo.svg' %>
           </a>
           <nav class="flex items-center h-full">
@@ -31,17 +31,25 @@
         </header>
       </div>
       <% if notice %>
-      <div class="relative z-10 px-4 text-white bg-ivf-orange">
-        <div class="flex w-full py-8 mx-auto max-w-screen-2xl">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+        <div class="relative z-20 px-4 py-4 bg-green-100 lg:px-12 ">
+          <div class="flex items-center mx-auto space-y-x max-w-screen-2xl">
+            <%= heroicon "shield-check", options: { class: "w-4 h-4" } %>
+            <p><%= notice %></p>
+          </div>
         </div>
-      </div>
+      <% end %>
+      <% if alert %>
+        <div class="relative z-20 px-4 py-4 bg-red-200 lg:px-12 ">
+          <div class="flex items-center mx-auto space-x-2 max-w-screen-2xl">
+            <%= heroicon "shield-exclamation", options: { class: "w-4 h-4" } %>
+            <p><%= alert %></p>
+          </div>
+        </div>
       <% end %>
       <div class="relative z-10 flex flex-col flex-grow">
         <%= yield %>
       </div>
-      <footer class="relative z-10 bg-white border-t  border-ivf-blue-25">
+      <footer class="relative z-10 bg-white border-t border-ivf-blue-25">
         <div class="flex items-center justify-between w-full h-full px-4 py-8 mx-auto max-w-screen-2xl">
           <a href="/" aria-label="Home page" class="w-28">
             <%= render '/shared/svgs/logo.svg' %>

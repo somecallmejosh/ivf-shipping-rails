@@ -9,16 +9,17 @@
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//unpkg.com/alpinejs" defer=""></script>
   </head>
 
   <body>
-    <div class="relative flex flex-col min-h-screen pt-24 overflow-hidden text-ivf-blue">
-      <div class="absolute top-0 left-0 z-20 flex items-center w-full h-24 px-4 bg-white shadow-md">
-        <header class="flex items-center justify-between w-full h-full mx-auto max-w-screen-2xl">
-          <a href="/" aria-label="Home page" class="w-40">
+    <div x-data="{ mobileNavOpen: false }" class="relative flex flex-col min-h-screen pt-24 overflow-hidden text-ivf-blue">
+      <div class="absolute top-0 left-0 z-20 flex items-center w-full h-24 px-4 bg-white shadow-md lg:px-10">
+        <header class="flex items-center justify-between w-full h-full mx-auto ">
+          <a href="/" aria-label="Home page" class="w-28 lg:w-32">
             <%= render '/shared/svgs/logo.svg' %>
           </a>
-          <nav class="flex items-center h-full">
+          <nav class="items-center hidden h-full lg:flex">
             <ul class="flex items-center h-full space-x-6 font-medium">
               <% if current_user %>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete  %></li>
@@ -28,11 +29,16 @@
               <% end %>
             </ul>
           </nav>
+          <button @click="mobileNavOpen = !mobileNavOpen" class="flex items-center space-x-2 lg:hidden">
+            <span class="text-xs">Menu</span>
+            <span x-show="!mobileNavOpen"><%= heroicon "menu", options: { class: "w-4 h-4" } %></span>
+            <span x-show="mobileNavOpen"><%= heroicon "x", options: { class: "w-4 h-4" } %></span>
+          </button>
         </header>
       </div>
       <div class="relative z-10 flex flex-col flex-grow">
         <div class="flex items-stretch flex-grow">
-          <aside class="flex flex-col p-6 overflow-scroll bg-white shadow lg:w-72">
+          <aside class="fixed top-0 left-0 z-50 flex flex-col w-3/4 h-full p-6 pt-32 overflow-scroll transition-transform duration-200 transform bg-white shadow lg:pt-6 lg:relative lg:w-72 lg:h-auto" :class="mobileNavOpen ? 'translate-x-0 shadow-lg' : '-translate-x-full lg:translate-x-0'">
             <div class="flex-grow space-y-2">
               <nav aria-labelledby="shipping-details" class="space-y-2">
                 <h2 id="shipping-details" class="font-semibold lg:pl-3">
@@ -47,7 +53,7 @@
                   </li> 
                   <li>
                     <a href="/shipments/" class="flex items-center p-2 space-x-1 text-sm font-medium duration-300 rounded-md group bg-ivf-blue-50 hover:bg-ivf-blue hover:text-white transform-colors">
-                    <%= heroicon "truck", options: { class: "w-4 h-4" } %>
+                    <%= heroicon "globe-alt", options: { class: "w-4 h-4" } %>
                     <span>My Shipments</span>
                     </a>
                   </li>
@@ -60,7 +66,6 @@
                 </ul>
               </nav>
             </div>
-
             <nav aria-labelledby="account-details" class="space-y-2">
               <h2 id="account-details" class="font-semibold lg:pl-3">
                 Account Menu
@@ -72,22 +77,20 @@
                     <span>My Profile</span>
                   </a>
                 </li>
-                <li>
-                  <button class="flex items-center w-full p-2 space-x-1 text-sm font-medium duration-300 rounded-md group bg-ivf-blue-50 hover:bg-ivf-blue hover:text-white transform-colors">
-                    <%= heroicon "key", options: { class: "w-4 h-4" } %>
-                    <span>Log out</span>
-                  </button>
-                </li>
               </ul> 
               <p class="px-2 text-xs">App Version: 0.18.0</p></nav>
           </aside>
           <main class="w-full">
             <% if notice %>
-              <div class="relative px-4 text-white bg-ivf-orange">
-                <div class="flex w-full py-8 mx-auto max-w-screen-2xl">
-                  <p class="notice"><%= notice %></p>
-                  <p class="alert"><%= alert %></p>
-                </div>
+              <div class="flex items-center px-4 py-4 space-x-2 bg-green-100 lg:px-12">
+                <%= heroicon "shield-check", options: { class: "w-4 h-4" } %>
+                <p><%= notice %></p>
+              </div>
+            <% end %>
+            <% if alert %>
+              <div class="flex items-center px-4 py-4 space-x-2 bg-red-200 lg:px-12">
+                <%= heroicon "shield-exclamation", options: { class: "w-4 h-4" } %>
+                <p><%= alert %></p>
               </div>
             <% end %>
             <%= yield %>
