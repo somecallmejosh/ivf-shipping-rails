@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   layout 'static'
+
   def shipment_list
   end
 

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'shipments', to: 'static_pages#shipment_list'
   get 'shipments/edit', to:'static_pages#shipment_edit'
   get 'shipments/new', to: 'static_pages#shipment_new'

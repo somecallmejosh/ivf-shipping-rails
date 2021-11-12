@@ -14,7 +14,7 @@
 
   <body>
     <div x-data="{ mobileNavOpen: false }" class="relative flex flex-col min-h-screen pt-24 overflow-hidden text-ivf-blue">
-      <div class="absolute top-0 left-0 z-20 flex items-center w-full h-24 px-4 bg-white shadow-md lg:px-10">
+      <div class="absolute top-0 left-0 z-20 flex items-center w-full h-20 px-4 bg-white shadow-md lg:h-24 lg:px-10">
         <header class="flex items-center justify-between w-full h-full mx-auto ">
           <a href="/" aria-label="Home page" class="w-28 lg:w-32">
             <%= render '/shared/svgs/logo.svg' %>
@@ -38,7 +38,7 @@
       </div>
       <div class="relative z-10 flex flex-col flex-grow">
         <div class="flex items-stretch flex-grow">
-          <aside class="fixed top-0 left-0 z-50 flex flex-col w-3/4 h-full p-6 pt-32 overflow-scroll transition-transform duration-200 transform bg-white shadow lg:pt-6 lg:relative lg:w-72 lg:h-auto" :class="mobileNavOpen ? 'translate-x-0 shadow-lg' : '-translate-x-full lg:translate-x-0'">
+          <aside class="fixed top-0 left-0 z-50 flex flex-col w-3/4 h-full p-4 overflow-scroll transition-transform duration-200 transform bg-white shadow lg:p-6 pt-28 lg:pt-6 lg:relative lg:w-72 lg:h-auto" :class="mobileNavOpen ? 'translate-x-0 shadow-lg' : '-translate-x-full lg:translate-x-0'">
             <div class="flex-grow space-y-2">
               <nav aria-labelledby="shipping-details" class="space-y-2">
                 <h2 id="shipping-details" class="font-semibold lg:pl-3">
